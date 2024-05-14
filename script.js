@@ -42,6 +42,43 @@ function update() {
 // Iniciar la animación
 update();
 
+const ajustarTamañoW = () => {
+    var panelIzquierda = document.getElementById("canvas");
+    return panelIzquierda.clientWidth
+}
+
+//Heigth
+const ajustarTamañoH = () => {
+    var panelIzquierda = document.getElementById("canvas");
+    return panelIzquierda.clientHeight
+}
+
+
+const centralWave = () =>{
+    // const rect = canvas.getBoundingClientRect();
+    const x =  ajustarTamañoW()/2
+    const y =  ajustarTamañoH()/2
+
+    waves.push({
+        x,
+        y,
+        radius: 0,
+        opacity: 1,
+    });
+}
+
+const multiWaveF = (cantidad, intervalo) => {
+
+    let contador = 0;
+    const intervalId = setInterval(() => {
+        centralWave();
+        contador++;
+        if (contador === cantidad) {
+            clearInterval(intervalId);
+        }
+    }, intervalo);
+}
+
 // Agregar un evento para crear una nueva onda cuando se hace clic en el canvas
 canvas.addEventListener('click', (e) => {
     const rect = canvas.getBoundingClientRect();
@@ -55,3 +92,10 @@ canvas.addEventListener('click', (e) => {
         opacity: 1,
     });
 });
+
+
+const multiWave = document.getElementById('multiWave');
+multiWave.addEventListener('click', (e)=>{
+
+})
+
