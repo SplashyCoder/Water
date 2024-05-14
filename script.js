@@ -73,15 +73,17 @@ const multiWaveF = (cantidad, intervalo) => {
     const intervalId = setInterval(() => {
         centralWave();
         contador++;
-        if (contador === cantidad) {
+        if (contador == cantidad) {
             clearInterval(intervalId);
         }
+        console.log(contador)
     }, intervalo);
+    update()
 }
 
 // Agregar un evento para crear una nueva onda cuando se hace clic en el canvas
 canvas.addEventListener('click', (e) => {
-    const rect = canvas.getBoundingClientRect();
+    // const rect = canvas.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
 
@@ -94,8 +96,14 @@ canvas.addEventListener('click', (e) => {
 });
 
 
-const multiWave = document.getElementById('multiWave');
-multiWave.addEventListener('click', (e)=>{
 
-})
+document.getElementById('multiWaveForm').addEventListener('submit', (e)=>{
+
+    e.preventDefault(); // Evita el comportamiento por defecto (recargar la página)
+
+    const cantidad = document.getElementById('cantidad').value
+    const intervalo = document.getElementById('intervalo').value
+
+    multiWaveF(cantidad, intervalo)
+})  
 
