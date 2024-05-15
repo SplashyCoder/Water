@@ -5,6 +5,7 @@ const ctx = canvas.getContext('2d');
 const width = canvas.width;
 const height = canvas.height;
 
+console.log(width, height)
 // Array para guardar las ondas
 const waves = [];
 
@@ -27,7 +28,7 @@ function update() {
 
         // Incrementar el radio y disminuir la opacidad para simular el desvanecimiento
         wave.radius += 2;
-        wave.opacity -= 0.02;
+        wave.opacity -= 0.009;
 
         // Eliminar las ondas que ya no son visibles
         if (wave.opacity <= 0) {
@@ -42,23 +43,8 @@ function update() {
 // Iniciar la animación
 update();
 
-const ajustarTamañoW = () => {
-    var panelIzquierda = document.getElementById("canvas");
-    return panelIzquierda.clientWidth
-}
 
-//Heigth
-const ajustarTamañoH = () => {
-    var panelIzquierda = document.getElementById("canvas");
-    return panelIzquierda.clientHeight
-}
-
-
-const centralWave = () =>{
-    // const rect = canvas.getBoundingClientRect();
-    const x =  ajustarTamañoW()/2
-    const y =  ajustarTamañoH()/2
-
+const waveCreator = (x,y) => {
     waves.push({
         x,
         y,
@@ -67,7 +53,15 @@ const centralWave = () =>{
     });
 }
 
-const multiWaveF = (cantidad, intervalo) => {
+const centralWave = () =>{
+    // const rect = canvas.getBoundingClientRect();
+    const x =  width/2
+    const y =  height/2
+
+    waveCreator(x, y)
+}
+
+const multiWaveI = (cantidad, intervalo) => {
 
     let contador = 0;
     const intervalId = setInterval(() => {
@@ -78,21 +72,34 @@ const multiWaveF = (cantidad, intervalo) => {
         }
         console.log(contador)
     }, intervalo);
-    update()
 }
+
+const multiWaveD = (cantidad, intervalo) => {
+    let contador = 0;
+    const intervalId = setInterval(() => {
+        const x = width
+        // const xx = 
+        const y = height/2
+        waveCreator(x/3,y);
+        waveCreator(x*(2/3),y);
+        contador++;
+        if (contador == cantidad) {
+            clearInterval(intervalId);
+        }
+        console.log(contador)
+    }, intervalo);
+}
+
+const doppler = () =>{}
 
 // Agregar un evento para crear una nueva onda cuando se hace clic en el canvas
 canvas.addEventListener('click', (e) => {
-    // const rect = canvas.getBoundingClientRect();
+    const rect = canvas.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
 
-    waves.push({
-        x,
-        y,
-        radius: 0,
-        opacity: 1,
-    });
+    waveCreator(x, y)
+
 });
 
 
@@ -103,7 +110,18 @@ document.getElementById('multiWaveForm').addEventListener('submit', (e)=>{
 
     const cantidad = document.getElementById('cantidad').value
     const intervalo = document.getElementById('intervalo').value
-
-    multiWaveF(cantidad, intervalo)
+    const funciones = document.getElementById('funciones').value
+    
+    switch (funciones){
+        case '1': 
+            doppler()
+            break
+        case '2': 
+            multiWaveI(cantidad, intervalo)
+            break
+        case '3': 
+            multiWaveD(cantidad, intervalo)
+            break
+    }
 })  
 
