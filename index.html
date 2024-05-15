@@ -3,36 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Simulación de Ondas</title>
-    <style>
-        #canvas {
-            border: 1px solid black;
-            display: block;
-            margin: 0 auto;
-        }
-    </style>
-</head>
+    <link rel="stylesheet" href="style.css">
 <body>
     <canvas id="canvas" width="600" height="400"></canvas>
 
-    <form id='multiWaveForm' action="">
+    <div class="formContainer">
+        <form id='multiWaveForm' action="">
 
-        <label for="intervalo">intervalo</label>
-        <input type="number" name="intervalo" id="intervalo" value="1000" required>
-
-        <label for="cantidad">cantidad</label>
-        <input type="number" name="cantidad" id="cantidad" value="5" required>
-
-        <label for="funciones">funciones</label>
-        <select name="funciones" id="funciones">
-            <option value="1">Efecto Doppler</option>
-            <option value="2">Multi onda individual</option>
-            <option value="3">Multi onda doble</option>
-        </select>
-        
-
-        <button id='multiWave' type="submit">multi</button> 
-    </form>
-
+            <label for="intervalo">intervalo</label>
+            <input type="number" name="intervalo" id="intervalo" value="1000" required>
+    
+            <label for="cantidad">cantidad</label>
+            <input type="number" name="cantidad" id="cantidad" value="5" required>
+    
+            <label for="funciones">funciones</label>
+            <select name="funciones" id="funciones">
+                <option value="1">Efecto Doppler</option>
+                <option value="2">Multi onda individual</option>
+                <option value="3">Multi onda doble</option>
+            </select>
+    
+            <button id='multiWave' type="submit">multi</button> 
+        </form>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>

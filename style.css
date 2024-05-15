@@ -1,0 +1,21 @@
+body{
+    background-color: #000;
+}
+
+
+#canvas {
+    border: 1px solid #fff;
+    display: block;
+    margin: 0 auto;
+    margin-top: 60px;
+}
+
+.formContainer{
+    border: 1px solid #fff;
+    display: block;
+    margin: 20px;
+    position: absolute;
+    top: 0;
+    /* left: 50%; */
+
+}
