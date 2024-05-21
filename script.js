@@ -70,7 +70,7 @@ const multiWaveI = (cantidad, intervalo) => {
         if (contador == cantidad) {
             clearInterval(intervalId);
         }
-        console.log(contador)
+        // console.log(contador)
     }, intervalo);
 }
 
@@ -99,7 +99,8 @@ canvas.addEventListener('click', (e) => {
     const y = e.clientY - rect.top;
 
     waveCreator(x, y)
-
+    console.log(waves)
+    
 });
 
 
@@ -123,5 +124,7 @@ document.getElementById('multiWaveForm').addEventListener('submit', (e)=>{
             multiWaveD(cantidad, intervalo)
             break
     }
+    console.log(waves)
+
 })  
 
