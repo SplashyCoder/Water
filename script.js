@@ -1,11 +1,20 @@
-// script.js
+
+function toggleVisibility(state) {
+    // Cambiar la visibilidad del div
+    if (state == true) {
+        hourglass.style.display = 'block';
+    } else if (state == false) {
+        hourglass.style.display = 'none';
+    }
+}
+
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 
 const width = canvas.width;
 const height = canvas.height;
 
-console.log(width, height)
+// console.log(width, height)
 // Array para guardar las ondas
 const waves = [];
 
@@ -16,6 +25,17 @@ function drawWave(x, y, radius, opacity) {
     ctx.lineWidth = 2;
     ctx.stroke();
 }
+
+function drawConcentricCircle(x, y, radius, opacity) {
+    ctx.beginPath();
+        ctx.arc(x, y, radius, 0, Math.PI * 2);
+        ctx.strokeStyle = `rgba(0, 0, 255, ${opacity})`; // Establecer el color del borde
+        ctx.lineWidth = 2; // Ancho del borde
+        ctx.stroke();
+        ctx.closePath();
+}
+
+
 
 function update() {
     // Limpiar el canvas
@@ -35,7 +55,6 @@ function update() {
             waves.splice(i, 1);
         }
     }
-
     // Volver a llamar la función de actualización para animar el canvas
     requestAnimationFrame(update);
 }
@@ -59,7 +78,9 @@ const centralWave = () =>{
     const y =  height/2
 
     waveCreator(x, y)
+
 }
+
 
 const multiWaveI = (cantidad, intervalo) => {
 
@@ -90,7 +111,33 @@ const multiWaveD = (cantidad, intervalo) => {
     }, intervalo);
 }
 
-const doppler = () =>{}
+
+const doppler = (cantidad, intervalo) =>{
+
+    const x = width/3
+    const y = height-100
+
+    let waveCount = 0;
+    waveOriginX = 0;
+    const waveDistance = 5;
+
+    const intervalId = setInterval(() => {
+        if (waveCount >= cantidad) {
+            clearInterval(intervalId);
+            return;
+        }
+
+        const x = waveOriginX;
+        waveCreator(x,y);
+        waveOriginX += waveDistance;
+
+        if (waveOriginX > canvas.width) {
+            waveOriginX = 0;
+        }
+
+        waveCount++;
+    }, intervalo);
+}
 
 // Agregar un evento para crear una nueva onda cuando se hace clic en el canvas
 canvas.addEventListener('click', (e) => {
@@ -115,16 +162,22 @@ document.getElementById('multiWaveForm').addEventListener('submit', (e)=>{
     
     switch (funciones){
         case '1': 
-            doppler()
+            doppler(cantidad,intervalo)
+            toggleVisibility(false)
+
             break
         case '2': 
             multiWaveI(cantidad, intervalo)
+            toggleVisibility(false)
+
             break
         case '3': 
             multiWaveD(cantidad, intervalo)
+            toggleVisibility(true)
+
             break
     }
-    console.log(waves)
+    // console.log(waves)
 
 })  
 

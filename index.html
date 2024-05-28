@@ -2,10 +2,33 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Simulación de Ondas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reloj de Arena con Curvas Suaves y Manipulación con JavaScript</title>
     <link rel="stylesheet" href="style.css">
+</head>
 <body>
-    <canvas id="canvas" width="600" height="400"></canvas>
+
+    <div class="container">
+        <canvas id="canvas" class="canvas" width="400" height="600"></canvas>
+        <div class="hourglass" id="hourglass"></div>
+    </div>
+    <!-- <button onclick="toggleVisibility()">Mostrar/Ocultar Reloj de Arena</button> -->
+
+    <svg width="0" height="0">
+        <defs>
+            <mask id="hourglassMask" x="0" y="0" width="1" height="1" viewBox="0 0 200 400">
+                <path d="M 0 0 Q 190 200 0 400 L 200 400 Q 10 200 200 0 Z" fill="white"/>
+            </mask>
+        </defs>
+    </svg>
+
+    <!-- <svg width="0" height="0">
+        <defs>
+            <mask id="hourglassMask" x="0" y="0" width="1" height="1" viewBox="0 0 400 600">
+                <path d="M 150 0 Q 200 300 150 600 L 250 600 Q 200 300 250 0 Z" fill="white"/>
+            </mask>
+        </defs>
+    </svg> -->
 
     <div class="formContainer">
         <form id='multiWaveForm' action="">
