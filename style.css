@@ -4,22 +4,24 @@ body{
 
 .container {
     display: flex;
-    position: absolute;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     width: 100%;
-    max-width: 400px;
+    max-width: 600px;
+    height: 400px;
     margin: auto;
     margin-top: 80px;
+    /* left: 50%; */
     background-color: #000;
     border: 1px solid #fff;
 }
-.canvas, .hourglass {
+
+.canvas {
     width: 100%;
     height: auto;
-    max-width: 400px;
-    max-height: 600px;
+    max-width: 600px;
+    max-height: 400px;
 }
 
 .hourglass {
@@ -27,7 +29,7 @@ body{
     width: 200px;
     height: 400px;
     background-color: #000;
-    /* margin: 50px auto; */
+    margin: 50px auto;
     mask-image: url(#hourglassMask);
     -webkit-mask-image: url(#hourglassMask);
     mask-size: 100% 100%;
@@ -36,15 +38,17 @@ body{
     -webkit-mask-repeat: no-repeat;
     mask-position: center;
     -webkit-mask-position: center;
-}
+} 
 
 .formContainer{
     border: 1px solid #fff;
-    display: block;
     margin: 20px;
-    position: absolute;
+    /* position: absolute */
     top: 0;
     /* left: 50%; */
-    
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
 }

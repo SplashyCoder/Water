@@ -47,7 +47,7 @@ function update() {
         drawWave(wave.x, wave.y, wave.radius, wave.opacity);
 
         // Incrementar el radio y disminuir la opacidad para simular el desvanecimiento
-        wave.radius += 2;
+        wave.radius += 1.05;
         wave.opacity -= 0.009;
 
         // Eliminar las ondas que ya no son visibles
